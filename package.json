@@ -1,0 +1,63 @@
+{
+  "name": "commits-to-changelogs",
+  "version": "0.0.1",
+  "description": "Turn your git commits into a polished CHANGELOG.md with AI — multi-provider, free-tier friendly.",
+  "keywords": [
+    "cli",
+    "changelog",
+    "ai",
+    "git",
+    "commits",
+    "openrouter",
+    "gemini",
+    "groq",
+    "cerebras",
+    "keepachangelog",
+    "conventional-commits"
+  ],
+  "license": "MIT",
+  "author": "byigitt <barisbayburtlu33@gmail.com>",
+  "homepage": "https://github.com/byigitt/commits-to-changelogs#readme",
+  "bugs": {
+    "url": "https://github.com/byigitt/commits-to-changelogs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byigitt/commits-to-changelogs.git"
+  },
+  "type": "module",
+  "bin": {
+    "ctc": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsgo --noEmit",
+    "lint": "oxlint",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "commander": "^14.0.0",
+    "env-paths": "^3.0.0",
+    "picocolors": "^1.1.1",
+    "yocto-spinner": "^1.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@typescript/native-preview": "^7.0.0-dev.20251101.1",
+    "oxlint": "^1.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  },
+  "packageManager": "pnpm@9.0.0"
+}
