@@ -1,5 +1,6 @@
 import { Command } from "commander";
 import pc from "picocolors";
+import { runSetup } from "./commands/setup.js";
 
 const VERSION = "0.0.1";
 
@@ -19,8 +20,8 @@ program
 program
   .command("setup")
   .description("interactive setup: pick a provider, paste your key, choose defaults")
-  .action(() => {
-    console.log(pc.yellow("setup wizard coming soon"));
+  .action(async () => {
+    await runSetup();
   });
 
 program
