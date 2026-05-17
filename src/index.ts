@@ -7,6 +7,13 @@ import {
   validateStyleFlag,
   type GenerateFlags,
 } from "./commands/generate.js";
+import {
+  runConfigEdit,
+  runConfigGet,
+  runConfigPath,
+  runConfigSet,
+  runProviders,
+} from "./commands/config.js";
 import { PROVIDER_IDS, STYLE_IDS } from "./core/config.js";
 
 const VERSION = "0.0.1";
@@ -91,6 +98,47 @@ program
   .description("interactive setup: pick a provider, paste your key, choose defaults")
   .action(async () => {
     await runSetup();
+  });
+
+const configCmd = program.command("config").description("view or edit ctc configuration");
+
+configCmd
+  .command("get [key]")
+  .description("print full config or a single dotted key (api keys are masked)")
+  .action((key?: string) => {
+    runConfigGet(key);
+  });
+
+configCmd
+  .command("set <key> <value>")
+  .description("set a dotted key (e.g. defaultProvider groq)")
+  .option("--project", "write to project config instead of user config", false)
+  .action((key: string, value: string, opts: { project?: boolean }) => {
+    runConfigSet(key, value, opts.project ? "project" : "user");
+  });
+
+configCmd
+  .command("path")
+  .description("print the path to the config file")
+  .option("--project", "print the project config path", false)
+  .action((opts: { project?: boolean }) => {
+    runConfigPath(opts.project ? "project" : "user");
+  });
+
+configCmd
+  .command("edit")
+  .description("open the config file in $EDITOR")
+  .option("--project", "edit the project config", false)
+  .action((opts: { project?: boolean }) => {
+    runConfigEdit(opts.project ? "project" : "user");
+  });
+
+program
+  .command("providers")
+  .alias("ls")
+  .description("list supported providers and their status")
+  .action(() => {
+    runProviders();
   });
 
 program.parseAsync(process.argv).catch((err: unknown) => {
