@@ -16,7 +16,7 @@ import {
 } from "./commands/config.js";
 import { PROVIDER_IDS, STYLE_IDS } from "./core/config.js";
 
-const VERSION = "0.0.1";
+const VERSION = "0.1.0";
 
 function banner(): string {
   const title = pc.bold(pc.magenta("ctc"));

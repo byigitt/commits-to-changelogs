@@ -1,6 +1,6 @@
 {
   "name": "commits-to-changelogs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Turn your git commits into a polished CHANGELOG.md with AI — multi-provider, free-tier friendly.",
   "keywords": [
     "cli",
